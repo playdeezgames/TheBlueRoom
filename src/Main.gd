@@ -2,11 +2,10 @@ extends Node2D
 
 var world = load("res://World/World.tres")
 var maze = load("res://World/Maze.tres")
+var dude = load("res://World/Dude.tres")
 
 const CELL_WIDTH = 32
 const CELL_HEIGHT = 32
-var player_column = 10
-var player_row = 10
 
 var the_maze
 
@@ -47,33 +46,15 @@ func _ready():
 	for maze_column in range(maze.MAZE_COLUMNS):
 		for maze_row in range(maze.MAZE_ROWS):
 			showMazeCell(maze_column*BOARD_COLUMNS, maze_row*BOARD_ROWS,maze_column, maze_row)
-	show_dude()
+	dude.show_dude(inner_panel, characters_tilemap)
 
-func hide_dude():
-	characters_tilemap.set_cell(player_column, player_row,-1)
-	
-func show_dude():
-	inner_panel.rect_position = Vector2(CELL_WIDTH * (BOARD_CENTER_COLUMN-player_column)+CELL_WIDTH/2, CELL_HEIGHT * (BOARD_CENTER_ROW-player_row)+CELL_HEIGHT/2)
-	characters_tilemap.set_cell(player_column, player_row,characters_tilemap.tile_set.find_tile_by_name("Player"))
-
-func moveDude(deltaX, deltaY):
-	hide_dude()
-	var next_row = player_row + deltaY
-	var next_column = player_column + deltaX
-	var tile_id = terrain_tilemap.get_cell(next_column, next_row)
-	var terrain_id = world.tile_names[tile_id]
-	var terrain_descriptor = world.terrains[terrain_id]
-	if(!terrain_descriptor.is_solid):
-		player_row=next_row
-		player_column=next_column
-	show_dude()
 
 func _input(event):
 	if event.is_action_pressed("ui_up"):
-		moveDude(0,-1)
+		dude.moveDude(inner_panel, characters_tilemap, terrain_tilemap, world, 0,-1)
 	if event.is_action_pressed("ui_down"):
-		moveDude(0,1)
+		dude.moveDude(inner_panel, characters_tilemap, terrain_tilemap, world, 0,1)
 	if event.is_action_pressed("ui_left"):
-		moveDude(-1,0)
+		dude.moveDude(inner_panel, characters_tilemap, terrain_tilemap, world, -1,0)
 	if event.is_action_pressed("ui_right"):
-		moveDude(1,0)
+		dude.moveDude(inner_panel, characters_tilemap, terrain_tilemap, world, 1,0)
