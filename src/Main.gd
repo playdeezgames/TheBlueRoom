@@ -4,7 +4,13 @@ var world = load("res://World/World.tres")
 
 const MAZE_COLUMNS = 8
 const MAZE_ROWS = 8
+const CELL_WIDTH = 32
+const CELL_HEIGHT = 32
+
 enum {DIRECTION_NORTH, DIRECTION_EAST, DIRECTION_SOUTH, DIRECTION_WEST, DIRECTION_COUNT}
+
+var player_column = 10
+var player_row = 10
 
 func columnStep(column, _row, direction):
 	match direction:
@@ -78,43 +84,44 @@ func showMazeCell(dst_column, dst_row, maze_column, maze_row):
 		src_row+=BOARD_ROWS*2
 	for column in range(BOARD_COLUMNS):
 		for row in range(BOARD_ROWS):
-			get_node("Panel/InnerPanel/Terrain").set_cell(dst_column+column, dst_row+row, $Templates.get_cell(src_column+column, src_row+row))
+			terrain_tilemap.set_cell(dst_column+column, dst_row+row, $Templates.get_cell(src_column+column, src_row+row))
+
+var terrain_tilemap
+var characters_tilemap
+var inner_panel
 
 func _init():
 	the_maze = createMaze()
 
 func _ready():
+	terrain_tilemap = get_node("Panel/InnerPanel/Terrain")
+	characters_tilemap = get_node("Panel/InnerPanel/Characters")
+	inner_panel = get_node("Panel/InnerPanel")
 	for maze_column in range(MAZE_COLUMNS):
 		for maze_row in range(MAZE_ROWS):
 			showMazeCell(maze_column*BOARD_COLUMNS, maze_row*BOARD_ROWS,maze_column, maze_row)
 	showDude()
 
-var player_column = 10
-var player_row = 10
-
 func hideDude():
-	get_node("Panel/InnerPanel/Characters").set_cell(player_column, player_row,-1)
+	characters_tilemap.set_cell(player_column, player_row,-1)
 func showDude():
-	get_node("Panel/InnerPanel/Characters").set_cell(player_column, player_row,get_node("Panel/InnerPanel/Characters").tile_set.find_tile_by_name("Player"))
+	inner_panel.rect_position = Vector2(CELL_WIDTH * (10-player_column), CELL_HEIGHT * (10-player_row))
+	characters_tilemap.set_cell(player_column, player_row,characters_tilemap.tile_set.find_tile_by_name("Player"))
 
 func _input(event):
 	if event.is_action_pressed("ui_up"):
 		hideDude()
 		player_row-=1
-		get_node("Panel/InnerPanel").rect_position+=Vector2(0,32)
 		showDude()
 	if event.is_action_pressed("ui_down"):
 		hideDude()
 		player_row+=1
-		get_node("Panel/InnerPanel").rect_position+=Vector2(0,-32)
 		showDude()
 	if event.is_action_pressed("ui_left"):
 		hideDude()
 		player_column-=1
-		get_node("Panel/InnerPanel").rect_position+=Vector2(32,0)
 		showDude()
 	if event.is_action_pressed("ui_right"):
 		hideDude()
 		player_column+=1
-		get_node("Panel/InnerPanel").rect_position+=Vector2(-32,0)
 		showDude()
