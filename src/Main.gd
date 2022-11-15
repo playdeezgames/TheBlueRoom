@@ -28,6 +28,8 @@ var inner_panel
 
 func _init():
 	the_maze = maze.createMaze()
+	var _maze_layout = maze.chamberize(the_maze)
+	pass
 
 func _ready():
 	terrain_tilemap = get_node("Panel/InnerPanel/Terrain")

@@ -58,5 +58,29 @@ func createMaze():
 				remaining-=1
 	return maze
 
+func chamberize(maze):
+	var rng = RandomNumberGenerator.new()
+	var result = []
+	for maze_column in maze:
+		var result_column = []
+		for cell in maze_column:
+			var door_count = 0
+			for door in cell.doors:
+				if door:
+					door_count+=1
+			var percent = 0
+			match door_count:
+				1:
+					percent = 100
+				2:
+					percent = 25
+				3:
+					percent = 75
+				4:
+					percent = 50
+			result_column.push_back(rng.randi_range(1,100)<=percent)
+		result.push_back(result_column)
+	return result
+
 func _ready():
 	pass
