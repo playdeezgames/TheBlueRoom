@@ -41,4 +41,4 @@ tile_set = ExtResource( 3 )
 cell_size = Vector2( 704, 704 )
 cell_custom_transform = Transform2D( 704, 0, 0, 704, 0, 0 )
 format = 1
-tile_data = PoolIntArray( 0, 3, 0 )
+tile_data = PoolIntArray( 0, 0, 0 )

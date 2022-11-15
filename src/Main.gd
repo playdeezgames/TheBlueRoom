@@ -3,31 +3,23 @@ extends Node2D
 var world = load("res://World/World.tres")
 var maze = load("res://World/Maze.tres")
 var dude = load("res://World/Dude.tres")
-
-const CELL_WIDTH = 32
-const CELL_HEIGHT = 32
+var board = load("res://World/Board.tres")
 
 var the_maze
-
-const BOARD_COLUMNS = 21
-const BOARD_ROWS = 21
-const BOARD_CENTER_COLUMN = 10
-const BOARD_CENTER_ROW = 10
-
 func showMazeCell(dst_column, dst_row, maze_column, maze_row):
 	var cell = the_maze[maze_column][maze_row]
 	var src_column = 0
-	var src_row = BOARD_ROWS
+	var src_row = board.BOARD_ROWS
 	if(cell.doors[maze.DIRECTION_NORTH]):
-		src_column+=BOARD_COLUMNS
+		src_column+=board.BOARD_COLUMNS
 	if(cell.doors[maze.DIRECTION_EAST]):
-		src_column+=BOARD_COLUMNS*2
+		src_column+=board.BOARD_COLUMNS*2
 	if(cell.doors[maze.DIRECTION_SOUTH]):
-		src_row+=BOARD_ROWS
+		src_row+=board.BOARD_ROWS
 	if(cell.doors[maze.DIRECTION_WEST]):
-		src_row+=BOARD_ROWS*2
-	for column in range(BOARD_COLUMNS):
-		for row in range(BOARD_ROWS):
+		src_row+=board.BOARD_ROWS*2
+	for column in range(board.BOARD_COLUMNS):
+		for row in range(board.BOARD_ROWS):
 			terrain_tilemap.set_cell(dst_column+column, dst_row+row, $Templates.get_cell(src_column+column, src_row+row))
 
 var terrain_tilemap
@@ -45,7 +37,7 @@ func _ready():
 	
 	for maze_column in range(maze.MAZE_COLUMNS):
 		for maze_row in range(maze.MAZE_ROWS):
-			showMazeCell(maze_column*BOARD_COLUMNS, maze_row*BOARD_ROWS,maze_column, maze_row)
+			showMazeCell(maze_column*board.BOARD_COLUMNS, maze_row*board.BOARD_ROWS,maze_column, maze_row)
 	dude.show_dude(inner_panel, characters_tilemap)
 
 

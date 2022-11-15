@@ -1,11 +1,6 @@
 extends Resource
 
-const CELL_WIDTH = 32
-const CELL_HEIGHT = 32
-const BOARD_COLUMNS = 21
-const BOARD_ROWS = 21
-const BOARD_CENTER_COLUMN = 10
-const BOARD_CENTER_ROW = 10
+var board = load("res://World/Board.tres")
 
 var player_column = 10
 var player_row = 10
@@ -14,7 +9,7 @@ func hide_dude(characters_tilemap):
 	characters_tilemap.set_cell(player_column, player_row,-1)
 	
 func show_dude(inner_panel, characters_tilemap):
-	inner_panel.rect_position = Vector2(CELL_WIDTH * (BOARD_CENTER_COLUMN-player_column)+CELL_WIDTH/2, CELL_HEIGHT * (BOARD_CENTER_ROW-player_row)+CELL_HEIGHT/2)
+	inner_panel.rect_position = Vector2(board.CELL_WIDTH * (board.BOARD_CENTER_COLUMN-player_column)+board.CELL_WIDTH/2, board.CELL_HEIGHT * (board.BOARD_CENTER_ROW-player_row)+board.CELL_HEIGHT/2)
 	characters_tilemap.set_cell(player_column, player_row,characters_tilemap.tile_set.find_tile_by_name("Player"))
 
 func moveDude(inner_panel, characters_tilemap, terrain_tilemap, world, deltaX, deltaY):
