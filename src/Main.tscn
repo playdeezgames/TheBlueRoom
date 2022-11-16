@@ -36,9 +36,22 @@ cell_size = Vector2( 32, 32 )
 cell_custom_transform = Transform2D( 32, 0, 0, 32, 0, 0 )
 format = 1
 
+[node name="Effects" type="TileMap" parent="Panel/InnerPanel"]
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 32, 32 )
+cell_custom_transform = Transform2D( 32, 0, 0, 32, 0, 0 )
+format = 1
+
+[node name="Items" type="TileMap" parent="Panel/InnerPanel"]
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 32, 32 )
+cell_custom_transform = Transform2D( 32, 0, 0, 32, 0, 0 )
+format = 1
+tile_data = PoolIntArray( 2621504, 81, 0 )
+
 [node name="Light" type="TileMap" parent="Panel"]
 tile_set = ExtResource( 3 )
 cell_size = Vector2( 704, 704 )
 cell_custom_transform = Transform2D( 704, 0, 0, 704, 0, 0 )
 format = 1
-tile_data = PoolIntArray( 0, 0, 0 )
+tile_data = PoolIntArray( 0, 2, 0 )
