@@ -52,6 +52,7 @@ tile_data = PoolIntArray( 0, 2, 0 )
 [node name="BoardRenderer" type="Node" parent="."]
 script = ExtResource( 4 )
 terrain_tilemap = NodePath("../Panel/InnerPanel/Terrain")
+items_tilemap = NodePath("../Panel/InnerPanel/Items")
 
 [node name="Templates" type="TileMap" parent="BoardRenderer"]
 visible = false
