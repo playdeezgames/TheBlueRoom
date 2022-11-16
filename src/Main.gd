@@ -6,7 +6,6 @@ var dude = load("res://World/Dude.tres")
 var board = load("res://World/Board.tres")
 
 var the_maze
-var the_maze_layout
 func render_template(dst_column, dst_row, columns, rows, src_column, src_row):
 	for column in range(columns):
 		for row in range(rows):
@@ -44,7 +43,15 @@ var inner_panel
 
 func _init():
 	the_maze = maze.createMaze()
-	the_maze_layout = maze.chamberize(the_maze)
+	maze.chamberize(the_maze)
+	
+func render_maze():
+	for maze_column in range(maze.MAZE_COLUMNS):
+		for maze_row in range(maze.MAZE_ROWS):
+			if the_maze[maze_column][maze_row].chamber:
+				render_chamber(maze_column*board.BOARD_COLUMNS, maze_row*board.BOARD_ROWS,maze_column, maze_row)
+			else:
+				render_passageway(maze_column*board.BOARD_COLUMNS, maze_row*board.BOARD_ROWS,maze_column, maze_row)
 
 func _ready():
 	terrain_tilemap = get_node("Panel/InnerPanel/Terrain")
@@ -52,12 +59,8 @@ func _ready():
 	inner_panel = get_node("Panel/InnerPanel")
 	world.make_tile_table(characters_tilemap.tile_set)
 	
-	for maze_column in range(maze.MAZE_COLUMNS):
-		for maze_row in range(maze.MAZE_ROWS):
-			if !the_maze_layout[maze_column][maze_row]:
-				render_passageway(maze_column*board.BOARD_COLUMNS, maze_row*board.BOARD_ROWS,maze_column, maze_row)
-			else:
-				render_chamber(maze_column*board.BOARD_COLUMNS, maze_row*board.BOARD_ROWS,maze_column, maze_row)
+	
+	render_maze()
 	dude.show_dude(inner_panel, characters_tilemap)
 
 

@@ -30,7 +30,7 @@ func createMaze():
 	while maze.size()<MAZE_COLUMNS:
 		var mazeColumn = []
 		while mazeColumn.size()<MAZE_ROWS:
-			mazeColumn.push_back({doors=[false,false,false,false], inside=false})
+			mazeColumn.push_back({doors=[false,false,false,false], inside=false, chamber=false})
 		maze.push_back(mazeColumn)
 	var rng = RandomNumberGenerator.new()
 	rng.randomize()
@@ -60,9 +60,7 @@ func createMaze():
 
 func chamberize(maze):
 	var rng = RandomNumberGenerator.new()
-	var result = []
 	for maze_column in maze:
-		var result_column = []
 		for cell in maze_column:
 			var door_count = 0
 			for door in cell.doors:
@@ -78,9 +76,7 @@ func chamberize(maze):
 					percent = 75
 				4:
 					percent = 50
-			result_column.push_back(rng.randi_range(1,100)<=percent)
-		result.push_back(result_column)
-	return result
+			cell.chamber=rng.randi_range(1,100)<=percent
 
 func _ready():
 	pass
