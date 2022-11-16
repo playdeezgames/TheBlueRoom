@@ -1,9 +1,20 @@
 extends Resource
 
 var board = load("res://World/Board.tres")
+var maze = load("res://World/Maze.tres")
 
 var player_column = 10
 var player_row = 10
+
+func spawn_dude(the_maze):
+	var rng = RandomNumberGenerator.new()
+	var maze_column = rng.randi_range(0,maze.MAZE_COLUMNS-1)
+	var maze_row = rng.randi_range(0,maze.MAZE_ROWS-1)
+	while the_maze[maze_column][maze_row].dead_end:
+		maze_column = rng.randi_range(maze.MAZE_COLUMNS)
+		maze_row = rng.randi_range(maze.MAZE_ROWS)
+	player_column = board.BOARD_COLUMNS * maze_column+10
+	player_row = board.BOARD_ROWS * maze_row+10
 
 func hide_dude(characters_tilemap):
 	characters_tilemap.set_cell(player_column, player_row,-1)

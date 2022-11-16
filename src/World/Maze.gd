@@ -30,7 +30,7 @@ func createMaze():
 	while maze.size()<MAZE_COLUMNS:
 		var mazeColumn = []
 		while mazeColumn.size()<MAZE_ROWS:
-			mazeColumn.push_back({doors=[false,false,false,false], inside=false, chamber=false})
+			mazeColumn.push_back({doors=[false,false,false,false], inside=false, chamber=false, doorways=[false,false,false,false], dead_end=false})
 		maze.push_back(mazeColumn)
 	var rng = RandomNumberGenerator.new()
 	rng.randomize()
@@ -57,15 +57,19 @@ func createMaze():
 				maze[column][row].inside=true
 				remaining-=1
 	return maze
+	
+func door_count(cell):
+	var result = 0
+	for door in cell.doors:
+		if door:
+			result+=1
+	return result
 
 func chamberize(maze):
 	var rng = RandomNumberGenerator.new()
 	for maze_column in maze:
 		for cell in maze_column:
-			var door_count = 0
-			for door in cell.doors:
-				if door:
-					door_count+=1
+			var door_count = door_count(cell)
 			var percent = 0
 			match door_count:
 				1:
@@ -77,6 +81,25 @@ func chamberize(maze):
 				4:
 					percent = 50
 			cell.chamber=rng.randi_range(1,100)<=percent
+
+func doorwayify(maze):
+	var column=0
+	for maze_column in maze:
+		var row=0
+		for cell in maze_column:
+			var door_count = door_count(cell)
+			cell.dead_end= door_count==1
+			if cell.dead_end:
+				for direction in range(DIRECTION_COUNT):
+					if cell.doors[direction]:
+						cell.doorways[direction]=true
+						var next_column = columnStep(column, row, direction)
+						var next_row = rowStep(column, row, direction)
+						var nextCell = maze[next_column][next_row]
+						nextCell.doorways[oppositeDirection(direction)]=true
+			row+=1
+		column+=1
+	pass
 
 func _ready():
 	pass
