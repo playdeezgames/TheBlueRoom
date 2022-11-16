@@ -63,3 +63,117 @@ var terrains = {
 		"is_solid": true
 	}
 }
+var door_table = {
+	"Red": ["North Red Door","East Red Door","South Red Door","West Red Door"],
+	"Yellow": ["North Yellow Door","East Yellow Door","South Yellow Door","West Yellow Door"],
+	"Green": ["North Green Door","East Green Door","South Green Door","West Green Door"],
+	"Cyan": ["North Cyan Door","East Cyan Door","South Cyan Door","West Cyan Door"],
+	"Blue": ["North Blue Door","East Blue Door","South Blue Door","West Blue Door"],
+	"Magenta": ["North Magenta Door","East Magenta Door","South Magenta Door","West Magenta Door"],
+}
+var door_generator = {
+	"Red":32,
+	"Yellow":16,
+	"Green":8,
+	"Cyan":4,
+	"Blue":2,
+	"Magenta":1,
+}
+var items = {
+	"North Red Door":{
+		"is_door": true,
+		"door_color": "Red"
+	},
+	"East Red Door":{
+		"is_door": true,
+		"door_color": "Red"
+	},
+	"South Red Door":{
+		"is_door": true,
+		"door_color": "Red"
+	},
+	"West Red Door":{
+		"is_door": true,
+		"door_color": "Red"
+	},
+	"North Yellow Door":{
+		"is_door": true,
+		"door_color": "Yellow"
+	},
+	"East Yellow Door":{
+		"is_door": true,
+		"door_color": "Yellow"
+	},
+	"South Yellow Door":{
+		"is_door": true,
+		"door_color": "Yellow"
+	},
+	"West Yellow Door":{
+		"is_door": true,
+		"door_color": "Yellow"
+	},
+	"North Green Door":{
+		"is_door": true,
+		"door_color": "Green"
+	},
+	"East Green Door":{
+		"is_door": true,
+		"door_color": "Green"
+	},
+	"South Green Door":{
+		"is_door": true,
+		"door_color": "Green"
+	},
+	"West Green Door":{
+		"is_door": true,
+		"door_color": "Green"
+	},
+	"North Cyan Door":{
+		"is_door": true,
+		"door_color": "Cyan"
+	},
+	"East Cyan Door":{
+		"is_door": true,
+		"door_color": "Cyan"
+	},
+	"South Cyan Door":{
+		"is_door": true,
+		"door_color": "Cyan"
+	},
+	"West Cyan Door":{
+		"is_door": true,
+		"door_color": "Cyan"
+	},
+	"North Blue Door":{
+		"is_door": true,
+		"door_color": "Blue"
+	},
+	"East Blue Door":{
+		"is_door": true,
+		"door_color": "Blue"
+	},
+	"South Blue Door":{
+		"is_door": true,
+		"door_color": "Blue"
+	},
+	"West Blue Door":{
+		"is_door": true,
+		"door_color": "Blue"
+	},
+	"North Magenta Door":{
+		"is_door": true,
+		"door_color": "Magenta"
+	},
+	"East Magenta Door":{
+		"is_door": true,
+		"door_color": "Magenta"
+	},
+	"South Magenta Door":{
+		"is_door": true,
+		"door_color": "Magenta"
+	},
+	"West Magenta Door":{
+		"is_door": true,
+		"door_color": "Magenta"
+	},
+}

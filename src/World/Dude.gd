@@ -11,8 +11,8 @@ func spawn_dude(the_maze):
 	var maze_column = rng.randi_range(0,maze.MAZE_COLUMNS-1)
 	var maze_row = rng.randi_range(0,maze.MAZE_ROWS-1)
 	while the_maze[maze_column][maze_row].dead_end:
-		maze_column = rng.randi_range(maze.MAZE_COLUMNS)
-		maze_row = rng.randi_range(maze.MAZE_ROWS)
+		maze_column = rng.randi_range(0,maze.MAZE_COLUMNS-1)
+		maze_row = rng.randi_range(0,maze.MAZE_ROWS-1)
 	player_column = board.BOARD_COLUMNS * maze_column+10
 	player_row = board.BOARD_ROWS * maze_row+10
 
