@@ -7,6 +7,11 @@ var board = load("res://World/Board.tres")
 
 var the_maze
 var the_maze_layout
+func render_template(dst_column, dst_row, columns, rows, src_column, src_row):
+	for column in range(columns):
+		for row in range(rows):
+			terrain_tilemap.set_cell(dst_column+column, dst_row+row, $Templates.get_cell(src_column+column, src_row+row))
+	
 func render_passageway(dst_column, dst_row, maze_column, maze_row):
 	var cell = the_maze[maze_column][maze_row]
 	var src_column = 0
@@ -19,14 +24,19 @@ func render_passageway(dst_column, dst_row, maze_column, maze_row):
 		src_row+=board.BOARD_ROWS
 	if(cell.doors[maze.DIRECTION_WEST]):
 		src_row+=board.BOARD_ROWS*2
-	for column in range(board.BOARD_COLUMNS):
-		for row in range(board.BOARD_ROWS):
-			terrain_tilemap.set_cell(dst_column+column, dst_row+row, $Templates.get_cell(src_column+column, src_row+row))
+	render_template(dst_column, dst_row, board.BOARD_COLUMNS, board.BOARD_ROWS, src_column, src_row)
 			
-func render_chamber(dst_column, dst_row, _maze_column, _maze_row):
-	for column in range(board.BOARD_COLUMNS):
-		for row in range(board.BOARD_ROWS):
-			terrain_tilemap.set_cell(dst_column+column, dst_row+row, $Templates.get_cell(column, row))
+func render_chamber(dst_column, dst_row, maze_column, maze_row):
+	render_template(dst_column, dst_row, board.BOARD_COLUMNS, board.BOARD_ROWS, 0, 0)
+	var cell = the_maze[maze_column][maze_row]
+	if(cell.doors[maze.DIRECTION_NORTH]):
+		render_template(dst_column+7, dst_row, 7,1,49,0)
+	if(cell.doors[maze.DIRECTION_SOUTH]):
+		render_template(dst_column+7, dst_row+20, 7,1,49,20)
+	if(cell.doors[maze.DIRECTION_WEST]):
+		render_template(dst_column, dst_row+7, 1,7,42,7)
+	if(cell.doors[maze.DIRECTION_EAST]):
+		render_template(dst_column+20, dst_row+7, 1,7,62,7)
 
 var terrain_tilemap
 var characters_tilemap
