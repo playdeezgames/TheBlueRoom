@@ -12,7 +12,7 @@ func render_template(dst_column, dst_row, columns, rows, src_column, src_row):
 			get_node(terrain_tilemap).set_cell(dst_column+column, dst_row+row, $Templates.get_cell(src_column+column, src_row+row))
 
 func add_door_item(dst_column, dst_row, direction):
-	var door_color = "Red"
+	var door_color = world.generate_door_color()
 	var item_name = world.door_table[door_color][direction]
 	get_node(items_tilemap).set_cell(dst_column, dst_row, world.tiles_table[item_name])
 

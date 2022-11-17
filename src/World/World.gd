@@ -1,5 +1,6 @@
 extends Resource
 
+var rng = RandomNumberGenerator.new()
 var tiles_table = {}
 var tile_names = {}
 func make_tile_table(tile_set):
@@ -79,6 +80,17 @@ var door_generator = {
 	"Blue":2,
 	"Magenta":1,
 }
+
+func generate_door_color():
+	var total = 0
+	for key in door_generator:
+		total+=door_generator[key]
+	var generated = rng.randi_range(0,total-1)
+	for key in door_generator:
+		if generated<door_generator[key]:
+			return key
+		generated-=door_generator[key]
+	
 var items = {
 	"North Red Door":{
 		"is_door": true,
