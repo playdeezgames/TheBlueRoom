@@ -6,15 +6,16 @@ var maze = load("res://World/Maze.tres")
 var player_column = 10
 var player_row = 10
 
-func spawn_dude(the_maze):
-	var rng = RandomNumberGenerator.new()
-	var maze_column = rng.randi_range(0,maze.MAZE_COLUMNS-1)
-	var maze_row = rng.randi_range(0,maze.MAZE_ROWS-1)
-	while the_maze[maze_column][maze_row].dead_end:
-		maze_column = rng.randi_range(0,maze.MAZE_COLUMNS-1)
-		maze_row = rng.randi_range(0,maze.MAZE_ROWS-1)
-	player_column = board.BOARD_COLUMNS * maze_column+10
-	player_row = board.BOARD_ROWS * maze_row+10
+func spawn_dude(world):
+	for column in world.characters:
+		for row in world.characters[column]:
+			var character=world.characters[column][row]
+			var descriptor=world.character_types[character.character_type]
+			if descriptor.is_player:
+				player_column=column
+				player_row=row
+				return
+			
 
 func hide_dude(characters_tilemap):
 	characters_tilemap.set_cell(player_column, player_row,-1)
@@ -41,8 +42,15 @@ func moveDude(inner_panel, characters_tilemap, terrain_tilemap, items_tilemap, w
 			if item_descriptor.has("is_door") && item_descriptor.is_door:
 				next_row=player_row
 				next_column=player_column
+			elif item_descriptor.has("can_pickup") && item_descriptor.can_pickup:
+				pass
+	var character = world.characters[player_column][player_row]
+	world.characters[player_column].erase(player_row)
 	player_row=next_row
 	player_column=next_column
+	if !world.characters.has(player_column):
+		world.characters[player_column]={}
+	world.characters[player_column][player_row]=character
 	show_dude(inner_panel, characters_tilemap)
 
 

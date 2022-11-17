@@ -23,8 +23,8 @@ func _ready():
 	characters_tilemap = get_node("Panel/InnerPanel/Characters")
 	inner_panel = get_node("Panel/InnerPanel")
 	world.make_tile_table(characters_tilemap.tile_set)
-	$BoardRenderer.render_maze(the_maze)
-	dude.spawn_dude(the_maze)
+	$BoardRenderer.render_maze(the_maze, world)
+	dude.spawn_dude(world)
 	dude.show_dude(inner_panel, characters_tilemap)
 
 

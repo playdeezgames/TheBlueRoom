@@ -90,7 +90,7 @@ func generate_door_color():
 		if generated<door_generator[key]:
 			return key
 		generated-=door_generator[key]
-	
+
 var items = {
 	"North Red Door":{
 		"is_door": true,
@@ -190,26 +190,40 @@ var items = {
 	},
 	"Red Key":{
 		"spawn_count": 0,
-		"spawn_filter": "nondeadend"
+		"spawn_filter": "nondeadend",
+		"can_pickup":true
 	},
 	"Yellow Key":{
 		"spawn_count": 0,
-		"spawn_filter": "nondeadend"
+		"spawn_filter": "nondeadend",
+		"can_pickup":true
 	},
 	"Green Key":{
 		"spawn_count": 0,
-		"spawn_filter": "nondeadend"
+		"spawn_filter": "nondeadend",
+		"can_pickup":true
 	},
 	"Cyan Key":{
 		"spawn_count": 0,
-		"spawn_filter": "nondeadend"
+		"spawn_filter": "nondeadend",
+		"can_pickup":true
 	},
 	"Blue Key":{
 		"spawn_count": 0,
-		"spawn_filter": "nondeadend"
+		"spawn_filter": "nondeadend",
+		"can_pickup":true
 	},
 	"Magenta Key":{
 		"spawn_count": 0,
-		"spawn_filter": "nondeadend"
+		"spawn_filter": "nondeadend",
+		"can_pickup":true
 	},
 }
+var character_types = {
+	"Player":{
+		"is_player":true,
+		"spawn_count":1,
+		"spawn_filter":"nondeadend"
+	}
+}
+var characters = {}
