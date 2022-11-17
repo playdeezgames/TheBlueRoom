@@ -80,7 +80,7 @@ var door_generator = {
 	"Blue":2,
 	"Magenta":1,
 }
-
+ 
 func generate_door_color():
 	var total = 0
 	for key in door_generator:
@@ -94,98 +94,122 @@ func generate_door_color():
 var items = {
 	"North Red Door":{
 		"is_door": true,
-		"door_color": "Red"
+		"key": "Red Key"
 	},
 	"East Red Door":{
 		"is_door": true,
-		"door_color": "Red"
+		"key": "Red Key"
 	},
 	"South Red Door":{
 		"is_door": true,
-		"door_color": "Red"
+		"key": "Red Key"
 	},
 	"West Red Door":{
 		"is_door": true,
-		"door_color": "Red"
+		"key": "Red Key"
 	},
 	"North Yellow Door":{
 		"is_door": true,
-		"door_color": "Yellow"
+		"key": "Yellow Key"
 	},
 	"East Yellow Door":{
 		"is_door": true,
-		"door_color": "Yellow"
+		"key": "Yellow Key"
 	},
 	"South Yellow Door":{
 		"is_door": true,
-		"door_color": "Yellow"
+		"key": "Yellow Key"
 	},
 	"West Yellow Door":{
 		"is_door": true,
-		"door_color": "Yellow"
+		"key": "Yellow Key"
 	},
 	"North Green Door":{
 		"is_door": true,
-		"door_color": "Green"
+		"key": "Green Key"
 	},
 	"East Green Door":{
 		"is_door": true,
-		"door_color": "Green"
+		"key": "Green Key"
 	},
 	"South Green Door":{
 		"is_door": true,
-		"door_color": "Green"
+		"key": "Green Key"
 	},
 	"West Green Door":{
 		"is_door": true,
-		"door_color": "Green"
+		"key": "Green Key"
 	},
 	"North Cyan Door":{
 		"is_door": true,
-		"door_color": "Cyan"
+		"key": "Cyan Key"
 	},
 	"East Cyan Door":{
 		"is_door": true,
-		"door_color": "Cyan"
+		"key": "Cyan Key"
 	},
 	"South Cyan Door":{
 		"is_door": true,
-		"door_color": "Cyan"
+		"key": "Cyan Key"
 	},
 	"West Cyan Door":{
 		"is_door": true,
-		"door_color": "Cyan"
+		"key": "Cyan Key"
 	},
 	"North Blue Door":{
 		"is_door": true,
-		"door_color": "Blue"
+		"key": "Blue Key"
 	},
 	"East Blue Door":{
 		"is_door": true,
-		"door_color": "Blue"
+		"key": "Blue Key"
 	},
 	"South Blue Door":{
 		"is_door": true,
-		"door_color": "Blue"
+		"key": "Blue Key"
 	},
 	"West Blue Door":{
 		"is_door": true,
-		"door_color": "Blue"
+		"key": "Blue Key"
 	},
 	"North Magenta Door":{
 		"is_door": true,
-		"door_color": "Magenta"
+		"key": "Magenta Key"
 	},
 	"East Magenta Door":{
 		"is_door": true,
-		"door_color": "Magenta"
+		"key": "Magenta Key"
 	},
 	"South Magenta Door":{
 		"is_door": true,
-		"door_color": "Magenta"
+		"key": "Magenta Key"
 	},
 	"West Magenta Door":{
 		"is_door": true,
-		"door_color": "Magenta"
+		"key": "Magenta Key"
+	},
+	"Red Key":{
+		"spawn_count": 0,
+		"spawn_filter": "nondeadend"
+	},
+	"Yellow Key":{
+		"spawn_count": 0,
+		"spawn_filter": "nondeadend"
+	},
+	"Green Key":{
+		"spawn_count": 0,
+		"spawn_filter": "nondeadend"
+	},
+	"Cyan Key":{
+		"spawn_count": 0,
+		"spawn_filter": "nondeadend"
+	},
+	"Blue Key":{
+		"spawn_count": 0,
+		"spawn_filter": "nondeadend"
+	},
+	"Magenta Key":{
+		"spawn_count": 0,
+		"spawn_filter": "nondeadend"
 	},
 }

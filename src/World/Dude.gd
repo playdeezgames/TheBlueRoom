@@ -38,7 +38,7 @@ func moveDude(inner_panel, characters_tilemap, terrain_tilemap, items_tilemap, w
 		if tile_id !=-1:
 			var item_id = world.tile_names[tile_id]
 			var item_descriptor = world.items[item_id]
-			if item_descriptor.is_door:
+			if item_descriptor.has("is_door") && item_descriptor.is_door:
 				next_row=player_row
 				next_column=player_column
 	player_row=next_row
