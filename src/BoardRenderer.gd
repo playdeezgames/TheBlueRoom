@@ -6,6 +6,7 @@ export(NodePath) var characters_tilemap
 var maze = load("res://World/Maze.tres")
 var board = load("res://World/Board.tres")
 var rng = RandomNumberGenerator.new()
+var constants = load("res://World/Constants.gd")
 
 func render_template(dst_column, dst_row, columns, rows, src_column, src_row):
 	for column in range(columns):
@@ -83,8 +84,8 @@ func spawn_item(the_maze, item, descriptor, world):
 	var row
 	var done = false
 	while !done:
-		column = rng.randi_range(0,maze.MAZE_COLUMNS*board.BOARD_COLUMNS-1)
-		row = rng.randi_range(0,maze.MAZE_ROWS*board.BOARD_ROWS-1)
+		column = rng.randi_range(0,constants.MAZE_COLUMNS*board.BOARD_COLUMNS-1)
+		row = rng.randi_range(0,constants.MAZE_ROWS*board.BOARD_ROWS-1)
 		var character_id = get_node(characters_tilemap).get_cell(column, row)
 		if character_id==-1:
 			var terrain_id = get_node(terrain_tilemap).get_cell(column,row)
@@ -108,8 +109,8 @@ func spawn_character(the_maze, character_type, descriptor, world):
 	var row
 	var done = false
 	while !done:
-		column = rng.randi_range(0,maze.MAZE_COLUMNS*board.BOARD_COLUMNS-1)
-		row = rng.randi_range(0,maze.MAZE_ROWS*board.BOARD_ROWS-1)
+		column = rng.randi_range(0,constants.MAZE_COLUMNS*board.BOARD_COLUMNS-1)
+		row = rng.randi_range(0,constants.MAZE_ROWS*board.BOARD_ROWS-1)
 		var character_id = get_node(characters_tilemap).get_cell(column, row)
 		if character_id==-1:
 			var terrain_id = get_node(terrain_tilemap).get_cell(column,row)
@@ -134,8 +135,8 @@ func populate_characters(the_maze, world):
 				spawn_count-=1
 
 func render_maze(the_maze, world):
-	for maze_column in range(maze.MAZE_COLUMNS):
-		for maze_row in range(maze.MAZE_ROWS):
+	for maze_column in range(constants.MAZE_COLUMNS):
+		for maze_row in range(constants.MAZE_ROWS):
 			if the_maze[maze_column][maze_row].chamber:
 				render_chamber(the_maze, maze_column*board.BOARD_COLUMNS, maze_row*board.BOARD_ROWS,maze_column, maze_row, world)
 			else:
