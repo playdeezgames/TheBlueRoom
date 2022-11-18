@@ -92,17 +92,33 @@ func moveDude(inner_panel, characters_tilemap, terrain_tilemap, items_tilemap, w
 		world.characters[player_column]={}
 	world.characters[player_column][player_row]=character
 	show_dude(inner_panel, characters_tilemap)
+	
+func show_inventory_quantity(quantities_tilemap, quantities_column, quantities_row, quantity):
+	if quantity>99:
+		quantities_tilemap.set_cell(quantities_column, quantities_row,10)
+		quantities_tilemap.set_cell(quantities_column-1, quantities_row,9)
+		quantities_tilemap.set_cell(quantities_column-2, quantities_row,9)
+	elif quantity>9:
+		quantities_tilemap.set_cell(quantities_column, quantities_row,quantity%10)
+		quantities_tilemap.set_cell(quantities_column-1, quantities_row,quantity/10)
+	else:
+		quantities_tilemap.set_cell(quantities_column, quantities_row,quantity)
 
-func update_inventory(inventory_tilemap, world):
+func update_inventory(inventory_tilemap, quantities_tilemap, world):
 	var character = world.characters[player_column][player_row]
 	for column in range(constants.INVENTORY_COLUMNS):
 		for row in range(constants.INVENTORY_ROWS):
 			inventory_tilemap.set_cell(column, row, -1)
+	for column in range(constants.QUANTITIES_COLUMNS):
+		for row in range(constants.QUANTITIES_ROWS):
+			quantities_tilemap.set_cell(column, row, -1)
 	if character.has("inventory"):
 		for item_name in character.inventory:
-			if character.inventory[item_name]>0:
+			var quantity = character.inventory[item_name]
+			if quantity>0:
 				var descriptor = world.items[item_name]
 				inventory_tilemap.set_cell(descriptor.inventory_column, descriptor.inventory_row, world.tiles_table[item_name])
+				show_inventory_quantity(quantities_tilemap, descriptor.inventory_column*constants.QUANTITIES_STEP_X+constants.QUANTITIES_STEP_X-1, descriptor.inventory_row*constants.QUANTITIES_STEP_Y+constants.QUANTITIES_STEP_Y-1, quantity)
 
 func _ready():
 	pass
