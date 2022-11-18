@@ -8,6 +8,7 @@ func make_tile_table(tile_set):
 		tiles_table[tile_set.tile_get_name(id)]=id
 		tile_names[id]=tile_set.tile_get_name(id)
 
+
 var terrains = {
 	"Floor":{
 		"is_solid": false
