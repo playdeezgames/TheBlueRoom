@@ -192,32 +192,44 @@ var items = {
 	"Red Key":{
 		"spawn_count": 0,
 		"spawn_filter": "nondeadend",
-		"can_pickup":true
+		"can_pickup":true,
+		"inventory_column":0,
+		"inventory_row":0
 	},
 	"Yellow Key":{
 		"spawn_count": 0,
 		"spawn_filter": "nondeadend",
-		"can_pickup":true
+		"can_pickup":true,
+		"inventory_column":1,
+		"inventory_row":0
 	},
 	"Green Key":{
 		"spawn_count": 0,
 		"spawn_filter": "nondeadend",
-		"can_pickup":true
+		"can_pickup":true,
+		"inventory_column":2,
+		"inventory_row":0
 	},
 	"Cyan Key":{
 		"spawn_count": 0,
 		"spawn_filter": "nondeadend",
-		"can_pickup":true
+		"can_pickup":true,
+		"inventory_column":0,
+		"inventory_row":1
 	},
 	"Blue Key":{
 		"spawn_count": 0,
 		"spawn_filter": "nondeadend",
-		"can_pickup":true
+		"can_pickup":true,
+		"inventory_column":1,
+		"inventory_row":1
 	},
 	"Magenta Key":{
 		"spawn_count": 0,
 		"spawn_filter": "nondeadend",
-		"can_pickup":true
+		"can_pickup":true,
+		"inventory_column":2,
+		"inventory_row":1
 	},
 }
 var character_types = {

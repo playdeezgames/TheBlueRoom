@@ -80,6 +80,8 @@ func moveDude(inner_panel, characters_tilemap, terrain_tilemap, items_tilemap, w
 					next_column=player_column
 				else:
 					items_tilemap.set_cell(next_column, next_row,-1)
+					next_row=player_row
+					next_column=player_column
 			elif can_pick_item_up(item_descriptor):
 				items_tilemap.set_cell(next_column, next_row,-1)
 				add_item_to_inventory(character, item_name)
@@ -91,6 +93,16 @@ func moveDude(inner_panel, characters_tilemap, terrain_tilemap, items_tilemap, w
 	world.characters[player_column][player_row]=character
 	show_dude(inner_panel, characters_tilemap)
 
+func update_inventory(inventory_tilemap, world):
+	var character = world.characters[player_column][player_row]
+	for column in range(constants.INVENTORY_COLUMNS):
+		for row in range(constants.INVENTORY_ROWS):
+			inventory_tilemap.set_cell(column, row, -1)
+	if character.has("inventory"):
+		for item_name in character.inventory:
+			if character.inventory[item_name]>0:
+				var descriptor = world.items[item_name]
+				inventory_tilemap.set_cell(descriptor.inventory_column, descriptor.inventory_row, world.tiles_table[item_name])
 
 func _ready():
 	pass
